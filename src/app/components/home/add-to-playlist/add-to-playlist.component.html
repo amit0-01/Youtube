@@ -1,0 +1,36 @@
+    <div class="flex justify-between bg-black text-white p-3">
+        <h1>Save Video to Playlist</h1>
+        <i mat-dialog-close class="fa-solid fa-xmark cursor-pointer"></i>
+    </div>
+    <div class="mx-7 my-3">
+    <div *ngFor="let playlist of userPlaylist">
+        <mat-checkbox (change)="onCheckboxChange(playlist, $event)"  [checked]="isVideoInPlaylist(playlist)" >{{playlist.name}}</mat-checkbox>
+    </div>
+
+</div>
+<div *ngIf="!showFormforCreateList" class="flex justify-between cursor-pointer bg-black text-white p-3" (click)="showPlaylistForm()">
+    <mat-icon>add</mat-icon>
+    <p>Create new playlist</p>
+</div>
+     <div class="flex justify-center w-full" *ngIf="showFormforCreateList">
+    <div class="flex flex-col  mb-4 space-y-4">
+        <input
+          type="text"
+          [(ngModel)]="playlistName"
+          placeholder="New Playlist Name"
+          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <textarea
+          [(ngModel)]="playlistDescription"
+          placeholder="Playlist Description"
+          class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows="3"
+        ></textarea>
+        <button
+          (click)="addPlaylist()"
+          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+        >
+          Create Playlist
+        </button>
+      </div>
+    </div>

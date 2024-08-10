@@ -1,0 +1,81 @@
+<app-header></app-header>
+<div class="flex">
+  <!-- Sidenav -->
+  <app-sidenav></app-sidenav>
+  <div class="flex flex-1">
+
+    <!-- Video Player Section -->
+    <div *ngIf="videoFile" class="flex-1">
+      <video controls class="w-full h-auto">
+        <source [src]="videoFile" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      
+      <div class="flex justify-between mt-4">
+        <div>
+          <button (click)="toogleLike()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+            {{VideoisLiked ? 'Unlike' : 'Like'}}
+          </button>
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2">
+            Dislike
+          </button>
+          <button (click)="toogleSubscription()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2">
+            {{subscribetoChannel ? 'Unsubscribe' : 'Subscribe'}}
+          </button>
+        </div>
+        <div>
+          <button (click)="openDialogforaddtoPlaylist()" type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add to playlist</button>
+        </div>
+      </div>
+      
+      <div class="mt-4">
+        <input type="text" [(ngModel)]="commentContent" placeholder="Add a comment" class="border border-gray-300 rounded py-2 px-4 w-full mb-2">
+        <button (click)="addComment()" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
+          Comment
+        </button>
+
+        <!-- Comments Section -->
+        <div id="comments-container" class="mt-4 space-y-4">
+          <div class="comment bg-gray-50 p-4 rounded shadow" *ngFor="let data of comments">
+            <div class="username font-bold mb-2">{{data.owner.username}}</div>
+            <div class="flex justify-between">
+              <div *ngIf="editingCommentId !== data._id" class="content mb-2">{{data.content}}</div>
+              <div *ngIf="editingCommentId === data._id" class="w-full">
+                <input [(ngModel)]="newContent" class="form-input mb-2 w-full" />
+                <div class="flex justify-end gap-2">
+                  <button (click)="cancelEdit()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cancel</button>
+                  <button (click)="editComment(data)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
+                </div>
+              </div>
+              <div class="flex gap-3" *ngIf="editingCommentId !== data._id">
+                <i (click)="openEditComment(data)" matTooltip="Edit" class="fa-solid fa-pen-to-square cursor-pointer"></i>
+                <i (click)="deleteComment(data)" matTooltip="Delete" class="fa-solid fa-trash cursor-pointer"></i>
+              </div>
+            </div>
+            <div class="actions flex space-x-4">
+              <i (click)="likeComment(data)" class="fa-regular fa-thumbs-up text-lg cursor-pointer" [ngStyle]="{'color': isLiked(data) ? 'green' : 'inherit'}" matTooltip="Like"></i>
+              <i class="fa-regular fa-thumbs-down text-lg cursor-pointer" matTooltip="Dislike"></i>
+            </div>
+          </div>
+        </div>      
+      </div>
+    </div>
+
+    <!-- Playlist Section -->
+    <div class="w-64 ml-4 overflow-y-auto">
+      <div class="cursor-pointer" *ngFor="let videos of playListVideos" (click)="changeVideo(videos)">
+        <div class="flex items-start space-x-3 bg-gray-800 hover:bg-gray-700 transition p-2 rounded-lg">
+          <img class="w-32 h-20 object-cover rounded-lg" [src]="'https://img.youtube.com/vi/' + videos.videoId + '/hqdefault.jpg'" alt="Video Thumbnail">
+          <div class="flex flex-col justify-between w-full">
+            <div>
+              <h3 class="text-white font-semibold text-sm leading-tight line-clamp-2">{{videos.title}}</h3>
+              <p class="text-gray-400 text-xs mt-1">{{videos.owner}}</p>
+            </div>
+            <span class="text-gray-400 text-xs">{{videos.duration}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

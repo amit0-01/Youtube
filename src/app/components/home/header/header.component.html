@@ -1,0 +1,28 @@
+<header class="bg-gray-900 text-white p-4 flex items-center justify-between">
+  <!-- YouTube Logo -->
+  <div class="flex items-center">
+    <img src="" class="h-8 mr-4">
+    <span class="font-bold text-xl">YouTube</span>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="flex-grow mx-4">
+    <div class="relative">
+      <input type="text" placeholder="Search" class="w-full p-2 pl-10 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-red-500">
+      <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l4-4-4-4m8 0h-8"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Upload Video and Logout Buttons -->
+  <div class="flex items-center">
+    <button (click)="uploadVideo()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mr-2 focus:outline-none focus:bg-blue-800">
+      Upload Video
+    </button>
+    <button (click)="logout()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:bg-red-800">
+      Logout
+    </button>
+  </div>
+
+</header>

@@ -1,0 +1,1 @@
+export const apiUrl = 'https://mini-youtube-backend-3.onrender.com'

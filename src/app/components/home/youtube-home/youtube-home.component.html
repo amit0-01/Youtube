@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="flex">
+  <!-- Sidenav -->
+<app-sidenav></app-sidenav>
+
+
+<!-- <div class="flex-1 ml-64 p-4">
+  <div class="grid-container">
+    <div *ngFor="let data of comingData" class="grid-item" >
+     <img [src]=data.thumbnail alt="">
+      <span">click</span>
+    </div>
+  </div>
+</div>
+</div> -->
+<div class="flex mt-4 gap-3 mx-1" *ngFor="let data of comingData">
+<div class=" grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 cursor-pointer" (click)="gotoplayVideo(data)" >
+  <!-- Card 1 -->
+  <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+    <img [src]=data.thumbnail alt="Thumbnail" class="w-full h-40 object-cover">
+      <div class="p-4">
+          <h3 class="text-white text-lg font-semibold">{{data.title}}</h3>
+          <p class="text-gray-400 text-sm">{{data.owner}}</p>
+          <p class="text-gray-400 text-sm">{{data.views}} views • {{data.createdAt | timeAgo}}  </p>
+      </div>
+  </div>
+</div>
+
+

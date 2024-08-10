@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="flex">
+  <!-- Sidenav -->
+  <app-sidenav></app-sidenav>
+
+  <div class="p-6 bg-gray-100 rounded-lg shadow-md w-full">
+    <h2 class="text-xl font-bold mb-4">Your Playlists</h2>
+    
+ 
+    
+    <ul class="space-y-2">
+      <li
+        *ngFor="let playlist of userPlaylist"
+        class="p-2 bg-white rounded-md shadow-sm hover:bg-gray-200" (click)="getIndividualPlaylist(playlist)"
+      >
+        <h3 class="font-semibold">{{ playlist.name }}</h3>
+        <p class="text-sm text-gray-600">{{ playlist.description }}</p>
+      </li>
+    </ul>
+  </div>
+</div>

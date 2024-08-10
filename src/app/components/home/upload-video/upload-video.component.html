@@ -1,0 +1,46 @@
+<form [formGroup]="videoForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div class="mb-4">
+      <label for="title" class="block text-gray-700 font-bold mb-2">Title</label>
+      <input id="title" formControlName="title" type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+      <div *ngIf="videoForm.get('title')?.invalid && videoForm.get('title')?.touched" class="text-red-500 text-sm mt-1">
+        Title is required
+      </div>
+    </div>
+  
+    <div class="mb-4">
+      <label for="description" class="block text-gray-700 font-bold mb-2">Description</label>
+      <textarea id="description" formControlName="description" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"></textarea>
+      <div *ngIf="videoForm.get('description')?.invalid && videoForm.get('description')?.touched" class="text-red-500 text-sm mt-1">
+        Description is required
+      </div>
+    </div>
+  
+    <div class="mb-4">
+      <label for="thumbnail" class="block text-gray-700 font-bold mb-2">Thumbnail</label>
+      <input id="thumbnail" type="file" (change)="onFileChange($event, 'thumbnail')" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+      <div *ngIf="videoForm.get('thumbnail')?.invalid && videoForm.get('thumbnail')?.touched" class="text-red-500 text-sm mt-1">
+        Thumbnail is required
+      </div>
+    </div>
+  
+    <div class="mb-4">
+      <label for="videofile" class="block text-gray-700 font-bold mb-2">Video File</label>
+      <input id="videofile" type="file" (change)="onFileChange($event, 'videofile')" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+      <div *ngIf="videoForm.get('videofile')?.invalid && videoForm.get('videofile')?.touched" class="text-red-500 text-sm mt-1">
+        Video file is required
+      </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="duration" class="block text-gray-700 font-bold mb-2">Duration (in minutes)</label>
+        <input id="duration" formControlName="duration" type="number" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+        <div *ngIf="videoForm.get('duration')?.invalid && videoForm.get('duration')?.touched" class="text-red-500 text-sm mt-1">
+          Duration is required
+        </div>
+      </div>
+  
+    <button type="submit" [disabled]="videoForm.invalid" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
+      Upload Video
+    </button>
+  </form>
+  
