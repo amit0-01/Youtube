@@ -147,6 +147,8 @@ export class PlayVideoComponent {
     // check if the channel is subscribed or not
     getSubscribedChannel(){
       this.service.getSubscribedChannel(this.user, this.token).subscribe((res:any) =>{
+        console.log(res);
+        
         if(res.data.length!= 0){
           this.subscribetoChannel = true;
            console.log('subscribed to channel');

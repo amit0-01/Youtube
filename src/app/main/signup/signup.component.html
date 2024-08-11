@@ -1,0 +1,60 @@
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <!-- Full Name -->
+      <div class="mb-4">
+        <label for="fullname" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" id="fullname" formControlName="fullname" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <div *ngIf="signupForm.get('fullname')!.invalid && signupForm.get('fullname')!.touched" class="text-red-500 text-sm mt-1">
+          Full name is required.
+        </div>
+      </div>
+  
+      <!-- Email -->
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" formControlName="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <div *ngIf="signupForm.get('email')!.invalid && signupForm.get('email')!.touched" class="text-red-500 text-sm mt-1">
+          Valid email is required.
+        </div>
+      </div>
+  
+      <!-- Username -->
+      <div class="mb-4">
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input type="text" id="username" formControlName="username" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <div *ngIf="signupForm.get('username')!.invalid && signupForm.get('username')!.touched" class="text-red-500 text-sm mt-1">
+          Username is required.
+        </div>
+      </div>
+  
+      <!-- Password -->
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" formControlName="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <div *ngIf="signupForm.get('password')!.invalid && signupForm.get('password')!.touched" class="text-red-500 text-sm mt-1">
+          Password is required.
+        </div>
+      </div>
+  
+      <!-- Avatar -->
+      <div class="mb-4">
+        <label for="avatar" class="block text-sm font-medium text-gray-700">Avatar</label>
+        <input type="file" id="avatar" (change)="onFileSelected($event, 'avatar')" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer focus:outline-none">
+        <div *ngIf="avatarError" class="text-red-500 text-sm mt-1">
+          Avatar file is required.
+        </div>
+      </div>
+  
+      <!-- Cover Image -->
+      <div class="mb-4">
+        <label for="coverImage" class="block text-sm font-medium text-gray-700">Cover Image</label>
+        <input type="file" id="coverImage" (change)="onFileSelected($event, 'coverImage')" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer focus:outline-none">
+      </div>
+  
+      <button type="submit" [disabled]="signupForm!.invalid || avatarError" class="w-full py-2 px-4 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        Sign Up
+      </button>
+    </form>
+  </div>
+  

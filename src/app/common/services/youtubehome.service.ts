@@ -19,7 +19,7 @@ export class YoutubehomeService {
   const params = new HttpParams()
     .set("userId",userId)
 
-    return this.http.get(url, {headers,params})
+    return this.http.get(url, {headers})
   
   }
 
@@ -182,6 +182,22 @@ export class YoutubehomeService {
                 'Authorization': `Bearer ${token}`
               })
             return this.http.get(url, {headers})
+            }
+            // logout
+        
+            logout(token:any){
+              const url = `${apiUrl}/api/v1/users/logout`
+              const headers = new HttpHeaders({
+                'Authorization': `Bearer ${token}`
+              })
+              return this.http.post(url, {}, {headers})
+            }
+
+            // register
+            register(formData:any){
+            const url = `${apiUrl}/api/v1/users/register`
+            return this.http.post(url, formData)
+            
             }
       }
       
